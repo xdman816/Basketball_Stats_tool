@@ -1,7 +1,8 @@
 import constants as const 
 import statistics as stats
+import copy 
 
-player_data = const.PLAYERS.copy()
+player_data = copy.deepcopy(const.PLAYERS)
 
 def avg_height(team_name):
     player_height = []
@@ -64,12 +65,12 @@ def balance_teams(team_name):
             player_guardians.extend(player['guardians'])
     guardian_string = ", ".join(player_guardians) 
  
-    print(f"Total Players: {len(team_name)}\nTotal experienced: {int(exp_count)}\nTotal inexperienced: {int(inexp_count)}\nAverage Height: {avg_height(team_name)}\n")
+    print(f"Total Players: {len(team_name)}\nTotal experienced: {int(total_experienced)}\nTotal inexperienced: {int(total_inexperienced)}\nAverage Height: {avg_height(team_name)}\n")
     print(f"Players on this team (in order of ascending height): {team_players}")
     print(f"Guardians on this team: {guardian_string}\n")
     
     team_stats = {'total inexperienced' : total_inexperienced, 'total experienced' : total_experienced, 'average height' : avg_height(team_name)}
-    team_name = team_name.append(team_stats)
+    team_name.append(team_stats)
     
 def tool_start():
     
